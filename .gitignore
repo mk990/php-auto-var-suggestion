@@ -1,0 +1,9 @@
+/dist
+*.vsix
+server
+lib
+.DS_Store
+node_modules/
+out/
+coverage/
+.nyc_output/
