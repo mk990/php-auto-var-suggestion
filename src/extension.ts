@@ -10,12 +10,20 @@ export function deactivate() {}
 
 function addDollarVar() {
   const editor = vscode.window.activeTextEditor;
+
   let text = "";
   if (editor) {
-    let re1 = RegExp(/.*[;|\(|\)|\[]/g);
-    let re2 = RegExp(/\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)/g);
+    const currentLineContent = editor.document.lineAt(
+      editor.selection.active.line
+    ).text;
+    let re1 = RegExp(/.*[;|\(|\)|\[]/g); // if line end with ; () [] its check if line was ended
+    let re2 = RegExp(/\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)/g); // get all $ variables
     text = editor.document.getText();
-    let allVars = text.match(re1)?.join("\n").match(re2);
+    let allVars = text
+      .replace(currentLineContent, "") //remove current Line
+      .match(re1) // get only ended lines
+      ?.join("\n") // join array
+      .match(re2); // get all variables
     if (!allVars) {
       allVars = ["$this"];
     }

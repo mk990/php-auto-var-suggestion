@@ -2,7 +2,7 @@
   "name": "php-auto-var-suggestion",
   "displayName": "phpAutoVarSuggestion",
   "description": "this extension can do autocomplete your php variable",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "MohammadHemmati",
   "icon": "img/php.png",
   "engines": {
